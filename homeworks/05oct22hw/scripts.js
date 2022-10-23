@@ -40,4 +40,20 @@ if (nuts > weBought) {
     console.log("Больше потратили на фрукты и овощи");
 }
 
+// let counter = 0;
+// do {
+//     console.log(counter++)
+// } while (counter < 5);
+
+// for (let i = 0; i <= 100; i += 10) {
+//     console.log(i);
+// };
+
+let i = 10;
+// while (--i > 5) {
+//     console.log(i)
+// }
+while (i-- > 5) {
+    console.log(i)
+}
 // Mia T 35-36m
