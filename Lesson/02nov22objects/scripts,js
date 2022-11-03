@@ -1,0 +1,537 @@
+    // Также мы можем использовать для этого метод Object.assign.
+// Object.assign(dest, [src1, src2, src3...]) // Синтаксис
+
+// Первый аргумент dest — целевой объект.
+// Остальные аргументы src1, ..., srcN (может быть столько, сколько необходимо) являются исходными объектами
+
+// Метод копирует свойства всех исходных объектов src1, ..., srcN в целевой объект dest. 
+// Другими словами, свойства всех аргументов, начиная со второго, копируются в первый объект.
+// Возвращает объект dest.
+
+// let user = { name: "John" };
+// let permissions1 = { canView: true };
+// let permissions2 = { canEdit: true };
+
+// // копируем все свойства из permissions1 и permissions2 в user
+
+
+// let user = {};
+// let test = { test: '1' };
+// let test2 = { test2: '2' };
+// let test3 = { test3: '3' };
+// let test4 = { test4: '4' };
+// Object.assign(user, test, test2, test3, test4);
+
+// function psevdoAssing(targetObj, ...restObjects) {
+// 	// body...
+// }
+
+
+// console.log(user)
+
+// теперь user = { name: "John", canView: true, canEdit: true }
+
+// Если скопированное имя свойства уже существует, оно будет перезаписано:
+// let user = { name: "John" };
+// Object.assign(user, { name: "Pete" });
+// console.log(user.name); // теперь user = { name: "Pete" }
+
+
+
+// Мы также можем использовать Object.assign для замены цикла for..in для простого клонирования:
+
+// let user = {
+//   name: "John",
+//   age: 30
+// };
+
+// let clone = Object.assign({}, user);
+// Он копирует все свойства user в пустой объект и возвращает его.
+
+
+
+
+
+
+
+
+
+
+
+// Вложенное клонирование
+// До сих пор мы предполагали, что все свойства user примитивныe. 
+// Но свойства могут быть и ссылками на другие объекты. Что с ними делать?
+
+// Например, есть объект:
+
+// let user = {
+//   name: "John",
+//   sizes: {
+//     height: 182,
+//     width: 50
+//   }
+// };
+
+// console.log( user.sizes.height ); // 182
+
+// Теперь недостаточно просто скопировать clone.sizes = user.sizes, 
+// потому что user.sizes – это объект, 
+// он будет скопирован по ссылке. 
+// Таким образом, clone и user будут иметь общий объект sizes:
+
+// let user = {
+//   name: "John",
+//   sizes: {
+//     height: 182,
+//     width: 50
+//   }
+// };
+
+// let clone = Object.assign({}, user);
+
+// console.log( user.sizes === clone.sizes ); // true, тот же объект
+
+// // user и clone обладают общим свойством sizes
+// user.sizes.width++;       // изменяем свойства в первом объекте
+// console.log(clone.sizes.width); // 51, видим результат в другом
+
+
+// Чтобы исправить это, мы должны использовать цикл клонирования, 
+// который проверяет каждое значение user[key] и, если это объект, 
+// тогда также копирует его структуру. Это называется «глубоким клонированием».
+
+// Мы можем реализовать глубокое клонирование, используя рекурсию. 
+// Или, чтобы не изобретать велосипед заново, возьмите готовую реализацию, 
+// например _.cloneDeep(obj) из библиотеки JavaScript lodash.
+
+
+
+
+
+// Итого
+// Объекты присваиваются и копируются по ссылке. 
+// Другими словами, переменная хранит не «значение объекта», 
+// а «ссылку» (адрес в памяти) на это значение. 
+
+// Таким образом, копирование такой переменной
+//  или передача её в качестве аргумента функции копирует эту ссылку, а не сам объект.
+
+// Все операции с использованием скопированных ссылок 
+// (например, добавление/удаление свойств) выполняются с одним и тем же объектом.
+
+// Чтобы создать «реальную копию» (клон), 
+// мы можем использовать Object.assign для так называемой «поверхностной копии» 
+// (вложенные объекты копируются по ссылке) 
+// или функцию «глубокого клонирования», такую как _.cloneDeep(obj).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Методы для объектов
+// Object.keys, values, entries
+
+// Для простых объектов доступны следующие методы:
+
+// let user = {
+//   name: "John",
+//   age: 30
+// };
+
+// let userKeysArray = Object.keys(user); [ ключ, ключ2, ключ3 ]
+// let userValuesArray = Object.values(user); [ значение, значение2, значение3 ]
+// let userEntriesArray = Object.entries(user);  [ [ключ, значение], [ключ2, значение2] ]
+
+// function entries(obj) {
+// 	let arr = [];
+// 	for (let key in obj) {
+// 		let iterArray = [];
+// 		iterArray.push(key);
+// 		iterArray.push(obj[key])
+// 		arr.push(iterArray)
+// 	}
+// 	return arr;
+// }
+
+// console.log(userEntriesArray)
+
+
+// Object.keys(user) – возвращает массив ключей.
+// Object.values(user) – возвращает массив значений.
+// Object.entries(user) – возвращает массив пар [ключ, значение].
+
+// let user = {
+//   name: "John",
+//   age: 30
+// };
+// Object.keys(user) // ["name", "age"]
+// Object.values(user) // ["John", 30]
+// Object.entries(user) // [ ["name","John"], ["age",30] ]
+
+// console.log( Object.keys(user) ); // ["name", "age"]
+// console.log( Object.values(user) ); // ["John", 30]
+// console.log( Object.entries(user) ); // [ ["name","John"], ["age",30] ]
+
+
+
+
+
+
+
+// Вот пример использования Object.values ​​для перебора значений свойств в цикле:
+// let user = {
+//   name: "John",
+//   age: 30
+// };
+
+// // перебор значений
+// for (let value of Object.values(user)) { // ["John", 30]
+//   console.log(value); // John, затем 30
+// }
+
+
+
+
+
+
+
+
+
+
+// Задачи
+
+// Сумма свойств объекта
+// Есть объект salaries с произвольным количеством свойств, содержащих заработные платы.
+
+// Напишите функцию sumSalaries(salaries), 
+// которая возвращает сумму всех зарплат с помощью метода Object.values и цикла for..of.
+
+// Если объект salaries пуст, то результат должен быть 0.
+
+// let salaries = {
+//   "John": 100,
+//   "Pete": 300,
+//   "Mary": 250
+// };
+
+// console.log( sumSalaries(salaries) ); // 650
+
+
+
+
+
+
+// Подсчёт количества свойств объекта
+// Напишите функцию count(obj), которая возвращает количество свойств объекта:
+
+// let user = {
+//   name: 'John',
+//   age: 30
+// };
+
+// console.log( count(user) ); // 2
+
+
+
+
+
+
+
+// Деструктуризация объекта
+// let options = {
+//   title: "Menu",
+//   width: 100,
+//   height: 200
+// };
+
+// let { 
+// 	title, 
+// 	width, 
+// 	height 
+// } = options;
+
+
+// console.log(title);  // Menu
+// console.log(width);  // 100
+// console.log(height); // 200
+
+
+
+// Остаток объекта «…» rest operator
+// let options = {
+//   title: "Menu",
+//   height: 200,
+//   width: 100
+// };
+
+// title = свойство с именем title
+// rest = объект с остальными свойствами
+// let { title, ...rest } = options;
+
+// сейчас title="Menu", rest={height: 200, width: 100}
+// console.log(title);  // Menu
+// console.log(rest.height);  // 200
+// console.log(rest.width);   // 100
+
+
+
+
+// function test(importantParam, ...restParam) {
+// 	console.log(importantParam)
+// 	console.log(restParam[3])
+// }
+
+
+// test(555, 1, 2, 'fdfdf', 3, 4, 'fdfdsfs')
+
+
+
+
+
+
+
+
+// Задачи
+// Деструктурирующее присваивание
+// У нас есть объект:
+
+// let user = {
+//   name: "John",
+//   years: 30
+// };
+// Напишите деструктурирующее присваивание, которое:
+
+// свойство name присвоит в переменную name.
+// свойство years присвоит в переменную age.
+// свойство isAdmin присвоит в переменную isAdmin (false, если нет такого свойства)
+// Пример переменных после вашего присваивания:
+
+// let user = { name: "John", years: 30 };
+
+// ваш код должен быть с левой стороны:
+// ... = user
+
+// console.log( name ); // John
+// console.log( age ); // 30
+// console.log( isAdmin ); // false
+
+
+
+
+
+
+
+// Максимальная зарплата
+// У нас есть объект salaries с зарплатами:
+
+// let salaries = {
+//   "John": 100,
+//   "Pete": 300,
+//   "Mary": 250
+// };
+// Создайте функцию topSalary(salaries), которая возвращает имя самого высокооплачиваемого сотрудника.
+
+// Если объект salaries пустой, то нужно вернуть null.
+// Если несколько высокооплачиваемых сотрудников, можно вернуть любого из них.
+// P.S. Используйте Object.entries и деструктурирование, чтобы перебрать пары ключ/значение.
+
+// {'Коля':'1000', 'Вася':'500', 'Петя':'200'}
+ 
+// let week = {
+//     1: "пн",
+//     2: "вт",
+//     3: "ср",
+//     4: "чт",
+//     5: "пт",
+//     6: "сб",
+//     7: "вс",
+// }
+// function getKey(value, obj) {
+//     for (const key in obj) {
+//         if (obj[key] === value) {
+//             return key
+//         }
+//     }
+//     return `value not find`
+// }
+
+// console.log(getKey("ср", week))
+        
+// function getValue(propName, obj) {
+//     for (const key in obj) {
+//         if (propName === key) {
+//             return obj[propName]
+//         }
+//     }
+//     return `key not find`
+// }
+// console.log(getValue("5", week))
+
+
+// let getObject = {
+//     getValue: (propName, obj) => {
+//         for (const key in obj) {
+//             if (propName === key) {
+//                 return obj[propName]
+//             }
+//         }
+//         return `key not find`
+//     },
+//     getKey: (value, obj) => {
+//         for (const key in obj) {
+//             if (obj[key] === value) {
+//                 return key
+//             }
+//         }
+//         return `value not find`
+//     }
+// }
+// console.log(getObject.getValue("2", week))
+// console.log(getObject.getKey("пн", week))
+// 13: 11: 15 От Anatoliy Chumak до Все:
+// function sumSalary(obj) {
+//     let sum = getSum(obj);
+//     let max = getMaxSal(obj);
+//     let min = getMinSal(obj, max);
+
+//     return { sum, max, min }
+// }
+// 13: 15: 00 От Stanislav Tonkich до Все:
+// let employt = {
+//     Николай: 1000,
+//     Василий: 2000,
+//     Светлана: 2500,
+//     Иван: 1500,
+//     Отдел: 'Разработка',
+// };
+
+// function getSalaryInfo(obj) {
+//     return {
+//         summa: getSum(obj),
+//         maxSalary: getMaxSalary(obj),
+//         minSalary: getMinSalary(obj, getMaxSalary(obj)),
+//     };
+// }
+
+// function getSum(obj) {
+//     let summa = 0;
+//     for (const key in obj) {
+//         if (typeof obj[key] === 'number') {
+//             summa += obj[key];
+//         }
+//     }
+//     return summa;
+// }
+
+// function getMaxSalary(obj) {
+//     let maxSalary = 0;
+//     for (const key in obj) {
+//         if (typeof obj[key] === 'number') {
+//             if (maxSalary < obj[key]) {
+//                 maxSalary = obj[key];
+//             }
+//         }
+//     }
+//     return maxSalary;
+// }
+
+// function getMinSalary(obj, maxSalary) {
+//     let minSalary = maxSalary;
+//     for (const key in obj) {
+//         if (typeof obj[key] === 'number') {
+//             if (minSalary > obj[key]) {
+//                 minSalary = obj[key];
+//             }
+//         }
+//     }
+//     return minSalary;
+// }
+// console.log(getSalaryInfo(employt));
+
+
+
+
+// let employt = {
+//     Николай: 1000,
+//     Василий: 2000,
+//     Светлана: 2500,
+//     Иван: 1500,
+//     Отдел: 'Разработка',
+// };
+
+// function getSalaryInfo(obj) {
+//     let summa = getSum(obj);
+//     let maxSalary = getMaxSalary(obj);
+//     let minSalary = getMinSalary(obj, maxSalary);
+
+//     return { summa, maxSalary, minSalary };
+// }
+
+// function getSum(obj) {
+//     let summa = 0;
+//     for (const key in obj) {
+//         if (typeof obj[key] === 'number') {
+//             summa += obj[key];
+//         }
+//     }
+//     return summa;
+// }
+
+// function getMaxSalary(obj) {
+//     let maxSalary = 0;
+//     for (const key in obj) {
+//         if (typeof obj[key] === 'number') {
+//             if (maxSalary < obj[key]) {
+//                 maxSalary = obj[key];
+//             }
+//         }
+//     }
+//     return maxSalary;
+// }
+
+// function getMinSalary(obj, maxSalary) {
+//     let minSalary = maxSalary;
+//     for (const key in obj) {
+//         if (typeof obj[key] === 'number') {
+//             if (minSalary > obj[key]) {
+//                 minSalary = obj[key];
+//             }
+//         }
+//     }
+//     return minSalary;
+// }
+// console.log(getSalaryInfo(employt));
+
+
+// // { a: 1, b: 2 }
+// // ({ a: 1, b: 2 }, 'b') => { a: 1 }
+// //deletedProps - это сколько угодно ключей которые нужно удалить из объекта 
+
+
+// let without = (obj, ...deletedProps) => {
+//     let newObject = {};
+
+//     for (const key in obj) {
+//         if (key !== deletedProps) {
+//             newObject[key] = obj[key];
+//         }
+//         deletedProps.forEach(element => {
+//             if (key !== element) {
+//                 newObject[key] = obj[key];
+//             }
+//         });
+//     }
+//     return newObject;
+// };
+
+// console.log(without({ a: 1, b: 2 }, 'b'));
+
