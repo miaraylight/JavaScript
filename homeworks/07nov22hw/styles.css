@@ -1,0 +1,12 @@
+
+.image{
+    
+    width: 600px;   
+    
+}
+
+.changed {
+    width: 600px;
+    border-radius: 50px;
+    overflow: hidden;
+}
