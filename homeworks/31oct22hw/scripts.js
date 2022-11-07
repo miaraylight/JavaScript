@@ -14,8 +14,7 @@ let user = {
 let countProp = object => {
     let counter = 0;
     for (let key in object) {
-        key = 1;
-        counter += key;
+        counter += 1;
     }
     return counter;
 }
