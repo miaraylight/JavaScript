@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <form class="someform">
+            <input type="text" name="title" placeholder="Название">
+            <input type="text" name="price" placeholder="Цена">
+            <input type="text" name="count" placeholder="Количество">
+            <button class="addBtn">Добавить</button>
+        </form>
+    </div>
+    <div class="items"></div>
+    <div class="total">
+        <p class="totalSum">Общая стоимость: <span id="t_sum"></span></p>
+        <p class="totalAmmount">Общее количество: <span id="t_ammount"></span></p>
+    </div>
+</body>
+<script src="./script.js"></script>
+</html>

@@ -12,13 +12,14 @@ const input = document.querySelector('#input')
 
 
 const blockUnblock = () => {
-    if (input.disabled) {
-        input.disabled = false
-    } else {
-        input.disabled = true
-    }
-}
+    // if (input.disabled) {
+    //     input.disabled = false
+    // } else {
+    //     input.disabled = true
+    // }
 
+    input.disabled = !input.disabled;  
+}
 blockBtn.addEventListener('click', blockUnblock);
 unblockBtn.addEventListener('click', blockUnblock);
 

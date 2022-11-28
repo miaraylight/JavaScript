@@ -275,7 +275,10 @@
 
 // title = свойство с именем title
 // rest = объект с остальными свойствами
+
 // let { title, ...rest } = options;
+
+//let title = "Menu"
 
 // сейчас title="Menu", rest={height: 200, width: 100}
 // console.log(title);  // Menu

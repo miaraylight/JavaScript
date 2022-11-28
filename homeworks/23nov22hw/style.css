@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.someform {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+
+    width: 1044px;
+    height: 469px;
+
+    background: #2980B9;
+    border-radius: 20px;
+
+}
+
+.addBtn {
+    color: white;
+    width: 454px;
+    height: 70px;
+    background: #16A085;
+    border-radius: 20px;
+    font-family: Inter;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 48px;
+    text-align: center;
+    border: none;
+}
+
+input {
+
+    width: 879px;
+    height: 70px;
+    border: none;
+    background: #D9D9D9;
+    font-family: Inter;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 48px;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.items {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.product {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 350px;
+    height: 350px;
+    padding: 20px;
+
+}
+
+.title {
+    font-family: Inter;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 48px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
+.price {
+    font-family: Inter;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
+.count {
+    font-family: Inter;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 31px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
+.totalSum,
+.totalAmmount,
+span {
+    font-family: Inter;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
