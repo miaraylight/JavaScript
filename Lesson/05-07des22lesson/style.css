@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.addTask{
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #16a085;
+    display: flex;
+    justify-content: space-between;
+
+}
+.addTask input{
+    width: 70%;
+    padding: 10px;
+}
+.addTask button{
+    width: 30%;
+    padding: 10px;
+}
+
+.tasks{
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #16a085;
+    display: grid;
+    /* grid-template-columns: repeat(3, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.tasks div{
+    border: 2px solid rgb(255, 255, 255);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.tasks p{
+    color: white;
+}
+
+.tasks button{
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: rgb(95, 92, 92);
+}

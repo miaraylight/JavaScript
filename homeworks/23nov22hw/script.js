@@ -40,6 +40,7 @@ function rerender() {
         container.append(title_h1, price_p, count_p);
     });
     
+    localStorage.setItem('card', JSON.stringify(data))
     items.append(container);
 
     container.classList.add("product");
@@ -49,7 +50,7 @@ function rerender() {
 }
 
 function countTotal() {
-    const sum = data.reduce((prev, item) => prev + +item.price, 0);
+    const sum = data.reduce((prev, item) => prev + +item.price * item.count, 0);
     const ammount = data.reduce((prev, item) => prev + +item.count, 0);
 
     totalSum.innerText = sum;
